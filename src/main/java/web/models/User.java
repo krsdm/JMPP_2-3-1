@@ -1,19 +1,20 @@
-package web.model;
+package web.models;
 
 import java.util.Objects;
 
 public class User {
-    private long id;
+    private int id;
     private String name;
     private String surname;
     private byte age;
     private String email;
 
-    User() {
+    public User() {
 
     }
 
-    public User(String name, String surname, byte age, String email) {
+    public User(int id, String name, String surname, byte age, String email) {
+        this.id = id;
         this.name = name;
         this.surname = surname;
         this.age = age;
@@ -24,7 +25,7 @@ public class User {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
