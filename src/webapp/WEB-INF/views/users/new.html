@@ -7,6 +7,10 @@
 </head>
 <body>
 
+    <h1>New User</h1>
+
+    <a href="/users"><button><strong>All Users</strong></button></a>
+
     <form th:method="POST" th:action="@{/users}" th:object="${newUser}">
         <p>
             <label for="name">Name</label><br/>
@@ -24,8 +28,9 @@
             <label for="email">Email</label><br/>
             <input type="email" th:field="*{email}" id="email"/>
         </p>
-
-        <p><input type="submit" value="create user"/></p>
+        <p>
+            <button type="submit"><strong>Create User</strong></button>
+        </p>
     </form>
 
 </body>

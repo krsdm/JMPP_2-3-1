@@ -19,25 +19,43 @@ public class UsersController {
 
     @GetMapping()
     public String userList(Model model) {
-        model.addAttribute("users", userService.getAllUser());
-        return "users";
+        model.addAttribute("users", userService.getAllUsers());
+        return "users/users";
     }
 
     @GetMapping("/{id}")
     public String showUser(@PathVariable("id") int id, Model model) {
         model.addAttribute("user", userService.getUserById(id));
-        return "user";
+        return "users/user";
     }
 
     @GetMapping("/new")
     public String newUser(Model model) {
         model.addAttribute("newUser", new User());
-        return "new";
+        return "users/new";
     }
 
     @PostMapping()
     public String createUser(@ModelAttribute("user") User user) {
         userService.saveUser(user);
+        return "redirect:/users";
+    }
+
+    @GetMapping("/{id}/edit")
+    public String editUser(@PathVariable("id") int id, Model model) {
+        model.addAttribute("user", userService.getUserById(id));
+        return "users/edit";
+    }
+
+    @PatchMapping("/{id}")
+    public String updateUser(@ModelAttribute("user") User user, @PathVariable("id") int id) {
+        userService.updateUser(user, id);
+        return "redirect:/users";
+    }
+
+    @DeleteMapping("/{id}")
+    public String deleteUser(@PathVariable("id") int id) {
+        userService.removeUser(id);
         return "redirect:/users";
     }
 }

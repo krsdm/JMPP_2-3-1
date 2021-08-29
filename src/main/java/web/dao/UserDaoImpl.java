@@ -21,7 +21,7 @@ public class UserDaoImpl implements UserDao{
     }
 
     @Override
-    public List<User> getAllUser() {
+    public List<User> getAllUsers() {
         return users;
     }
 
@@ -37,6 +37,20 @@ public class UserDaoImpl implements UserDao{
     public void saveUser(User user) {
         user.setId(increment++);
         users.add(user);
+    }
+
+    @Override
+    public void updateUser(User updatedUser, int id) {
+        User user = getUserById(id);
+        user.setName(updatedUser.getName());
+        user.setSurname(updatedUser.getSurname());
+        user.setAge(updatedUser.getAge());
+        user.setEmail(updatedUser.getEmail());
+    }
+
+    @Override
+    public void removeUser(int id) {
+        users.remove(getUserById(id));
     }
 
 }
