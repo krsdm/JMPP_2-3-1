@@ -7,11 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class UserDaoImpl implements UserDao{
+public class ListUserDaoImpl implements UserDao{
     private static int increment;
     private final List<User> users;
 
-    public UserDaoImpl() {
+    public ListUserDaoImpl() {
         users = new ArrayList<>();
         users.add(new User(increment++, "Alex", "Ivanov", (byte) 17, "alexivanov@mail.com"));
         users.add(new User(increment++, "Ivan", "Alexandrov", (byte) 27, "ivanalexandrov@mail.com"));
