@@ -24,9 +24,7 @@ public class JpaUserDaoImpl implements UserDao {
     @Override
     @Transactional(readOnly = true)
     public User getUserById(int id) {
-        return entityManager.createQuery("select u from User u where u.id = :id", User.class)
-                .setParameter("id", id)
-                .getSingleResult();
+        return entityManager.find(User.class, id);
     }
 
     @Override
@@ -35,15 +33,8 @@ public class JpaUserDaoImpl implements UserDao {
     }
 
     @Override
-    public void updateUser(User updatedUser, int id) {
-        entityManager.createQuery(
-                "update User u set u.name = :name, u.surname = :surname, u.age = :age, u.email = :email where u.id = :id")
-                .setParameter("name", updatedUser.getName())
-                .setParameter("surname", updatedUser.getSurname())
-                .setParameter("age", updatedUser.getAge())
-                .setParameter("email", updatedUser.getEmail())
-                .setParameter("id", id)
-                .executeUpdate();
+    public void updateUser(User updatedUser) {
+        entityManager.merge(updatedUser);
     }
 
     @Override

@@ -13,7 +13,7 @@ public class UserServiceImpl implements UserService{
     private final UserDao userDao;
 
     @Autowired
-    public UserServiceImpl(@Qualifier("jpaUserDaoImpl") UserDao userDao) {
+    public UserServiceImpl(UserDao userDao) {
         this.userDao = userDao;
     }
 
@@ -33,8 +33,8 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public void updateUser(User updatedUser, int id) {
-        userDao.updateUser(updatedUser, id);
+    public void updateUser(User updatedUser) {
+        userDao.updateUser(updatedUser);
     }
 
     @Override
